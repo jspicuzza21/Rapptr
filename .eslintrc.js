@@ -23,6 +23,10 @@ module.exports = {
     'react/destructuring-assignment': [0, 'never', { ignoreClassFields: true }],
     'no-param-reassign': 'off',
     'linebreak-style': 'off',
+    'jsx-a11y/no-static-element-interactions': 'off',
+    'jsx-a11y/click-events-have-key-events': 'off',
+    'max-len': 'off',
+    'jsx-a11y/label-has-associated-control': 'off',
   },
   settings: {
     react: {

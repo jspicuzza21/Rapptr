@@ -3,7 +3,7 @@ import ReactDom from 'react-dom';
 import {
   HashRouter, Switch, Route, Redirect,
 } from 'react-router-dom';
-import { Home } from './components';
+import { Home, List } from './components';
 
 class App extends Component {
   render() {
@@ -11,6 +11,7 @@ class App extends Component {
       <HashRouter>
         <Switch>
           <Route exact path="/" component={Home} />
+          <Route exact path="/my-list" component={List} />
           <Redirect to="/" />
         </Switch>
       </HashRouter>

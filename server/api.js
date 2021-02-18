@@ -1,6 +1,7 @@
 const path = require('path');
 const chalk = require('chalk');
 const express = require('express');
+const request = require('request');
 const app = require('./server');
 
 const PORT = process.env.PORT || 3000;
@@ -15,6 +16,13 @@ app.use(express.json());
 app.use((req, res, next) => {
   res.header('Access-Control-Allow-Origin', '*');
   next();
+});
+
+app.post('/login', (req, res) => {
+  const { email, password } = req.body;
+  request.post({ url: 'http://dev.rapptrlabs.com/Tests/scripts/user-login.php', form: { email, password } }, (err, httpResponse, body) => {
+    res.json(JSON.parse(body));
+  });
 });
 
 const startServer = () => new Promise((res) => {

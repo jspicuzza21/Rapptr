@@ -1,0 +1,144 @@
+body{
+  font-family: 'Patrick Hand', cursive;
+}
+
+.page-container{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+h1{
+  text-align: center;
+}
+
+.login-form{
+  display: flex;
+  flex-direction: column;
+}
+
+input{  
+    width: 100%;  
+    padding: 12px 40px;  
+    margin: 8px 0 1;  
+    display: inline-block;  
+    border: 1px solid #ccc;  
+    box-sizing: border-box;  
+}
+
+.invalid-input{  
+    border: 1px solid red; 
+    outline: none; 
+}  
+
+.icon { 
+    position: relative; 
+} 
+  
+.icon i{ 
+    position: absolute; 
+    left: 15px; 
+    top: 40px; 
+    color: gray; 
+} 
+
+.hide-text{
+  visibility: hidden;
+}
+
+p {
+  margin: 0 0 5;
+  color: red;
+  font-size: small;
+  text-align: center;
+}
+
+button{
+  background-color: rgb(30, 144, 255);
+  color: white;
+  border: none;
+  padding: 11px 14px
+}
+
+button:disabled{
+  opacity: 50%;
+}
+
+button:hover:enabled{
+  opacity: .8;
+}
+
+.container{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.list-container{
+  border: 1px solid black;
+  max-width: 500px;
+  min-width: 350px;
+  min-height: 70vh;
+  border-radius: 5%;
+}
+
+.container > button{
+  align-self: flex-end;
+}
+
+.list-row{
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid black;
+  height: 4rem;
+  align-items: center;
+}
+
+.end{
+  border-bottom: 0;
+}
+
+.list-row>input{
+  max-width: 70%;
+  margin: 0 10px;
+}
+
+.row-icons > i{
+  margin-right: 15px;
+  color: darkgrey
+}
+
+.row-icons > i:hover{
+  color: lightgray;
+}
+
+.search-input{
+    border-radius: 15px;
+    border:solid 1px black;
+    margin: 0 5px;
+}
+
+.icon-search { 
+  position: relative; 
+}  
+
+.icon-search i{ 
+  position: absolute; 
+  left: 15px; 
+  top: 12px; 
+  color: gray; 
+} 
+
+.list-row > h3 {
+  margin: 0 10px;
+}
+
+.list-row > button {
+  margin: 0 10px;
+}
+
+input:focus {
+  outline: none
+}
