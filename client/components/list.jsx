@@ -50,6 +50,7 @@ const List = (props) => {
           <div className="list-row">
             <div className="icon-search">
               <input
+                disabled={toDoList === null}
                 className="search-input"
                 type="text"
                 placeholder="search"
