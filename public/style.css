@@ -38,8 +38,8 @@ input{
   
 .icon i{ 
     position: absolute; 
-    left: 15px; 
-    top: 40px; 
+    left: 14px; 
+    top: 43px; 
     color: gray; 
 } 
 
@@ -58,7 +58,10 @@ button{
   background-color: rgb(30, 144, 255);
   color: white;
   border: none;
-  padding: 11px 14px
+  padding: 11px 14px;
+  border-radius: 3px;
+  -webkit-box-shadow: 4px 5px 8px -1px rgba(0,0,0,0.65); 
+  box-shadow: 4px 5px 8px -1px rgba(0,0,0,0.65);  
 }
 
 button:disabled{
@@ -141,4 +144,10 @@ button:hover:enabled{
 
 input:focus {
   outline: none
+}
+
+.logout{
+  background-color: white;
+  color: black;
+  border: 1px solid black;
 }

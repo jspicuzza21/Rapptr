@@ -6,16 +6,19 @@ const List = (props) => {
   const [newTask, setNewTask] = useState('');
   const [showForm, setShowForm] = useState(false);
   const [toDoList, setToDoList] = useState([]);
-  const [showEdit, setShowEdit] = useState(false);
+  const [showEdit, setShowEdit] = useState('');
   const [deleteListener, setListener] = useState(false);
 
+  // Used to make sure the last element does not have a bottom border
   let idx = 0;
 
+  // Sync data from local storage to state when task is added or deleted
   useEffect(() => {
     const list = JSON.parse(localStorage.getItem('toDo'));
     if (list !== null) setToDoList(list);
   }, [newTask, deleteListener]);
 
+  // Filter the list upon changes to the searchStr state
   useEffect(() => {
     if (searchStr.length > 0) {
       setToDoList(filterList(JSON.parse(localStorage.getItem('toDo')), searchStr));
@@ -24,21 +27,23 @@ const List = (props) => {
     }
   }, [searchStr]);
 
+  // Add new items to the local storage
   const handleNew = () => {
     const newList = JSON.stringify({ ...toDoList, [newTask]: newTask });
     localStorage.setItem('toDo', newList);
     setNewTask('');
   };
 
+  // Sync the data from the state toDolist with local storage after editing an item
   const handleSave = () => {
     localStorage.setItem('toDo', JSON.stringify(toDoList));
-    setShowEdit(false);
+    setShowEdit('');
   };
 
   const { history } = props;
   return (
     <div className="container">
-      <button type="button" onClick={() => history.push('/')}>Logout</button>
+      <button type="button" className="logout" onClick={() => history.push('/')}>Logout</button>
       <div>
         <h1>My To-Do List</h1>
         <div className="list-container">
@@ -55,6 +60,7 @@ const List = (props) => {
             </div>
             <button type="button" onClick={() => setShowForm(!showForm)}>New</button>
           </div>
+          {/* If new is pressed show the form to add to the list */}
           {showForm
             && (
             <div className="list-row">
@@ -62,21 +68,24 @@ const List = (props) => {
               <button type="button" onClick={handleNew} style={{ backgroundColor: 'black' }}>Save</button>
             </div>
             )}
+          {/* Map through the object from the toDoList and display items */}
           {Object.entries(toDoList).map((elem) => {
             idx += 1;
-            if (showEdit[0] && elem[0] === showEdit[1]) {
+            // If the showEdit state value is equal to the current element display the item as an input field with save button
+            if (elem[0] === showEdit) {
               return (
                 <div className="list-row" key={elem[0]}>
-                  <input value={elem[1]} onChange={(e) => setToDoList({ ...toDoList, [elem[0]]: e.target.value })} />
+                  <input value={elem[1]} minLength="1" maxLength="25" onChange={(e) => setToDoList({ ...toDoList, [elem[0]]: e.target.value })} />
                   <button type="button" onClick={handleSave} style={{ backgroundColor: 'black' }}>Save</button>
                 </div>
               );
             }
+            // If the current element is not being edited, show the item and icons
             return (
               <div className={Object.values(toDoList).length === idx ? 'list-row end' : 'list-row'} key={elem[0]}>
                 <h3>{elem[1]}</h3>
                 <div className="row-icons">
-                  <i className="fa fa-pencil fa-lg" onClick={() => setShowEdit([true, elem[0]])} />
+                  <i className="fa fa-pencil fa-lg" onClick={() => setShowEdit(elem[0])} />
                   <i
                     className="fa fa-trash fa-lg"
                     onClick={() => {

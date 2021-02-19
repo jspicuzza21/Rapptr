@@ -1,7 +1,7 @@
 # Raptr_Prompt
 
 ## Description
-
+A basic to-do list application using React and Javascript on the front end and Node.js on the back end.
 
 ## Installation
 ```node

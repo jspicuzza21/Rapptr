@@ -13,7 +13,7 @@ const Home = (props) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    axios.post('/login', { email: 'test@rapptrlabs.com', password: 'Test123' })
+    axios.post('/login', { email, password })
       .then(({ data }) => {
         if (data.user_token) {
           history.push('/my-list');
@@ -31,6 +31,7 @@ const Home = (props) => {
           <div className="icon">
             <label><b>Email</b></label>
             <input
+              maxLength="25"
               className={invalidEmail ? 'invalid-input' : ''}
               type="text"
               placeholder="user@rapptrlabs.com"
@@ -60,7 +61,7 @@ const Home = (props) => {
             <i className="fa fa-lock fa-lg" />
           </div>
           <p className={invalidPW ? 'show-text' : 'hide-text'}>Password is invalid</p>
-          <button type="submit">Login</button>
+          <button type="submit" disabled={!!(invalidEmail || invalidPW || email.length === 0 || password.length === 0)}>Login</button>
           <p className={errorMsg.length > 0 ? 'show-text' : 'hide-text'}>{errorMsg}</p>
         </form>
       </div>
@@ -68,5 +69,3 @@ const Home = (props) => {
   );
 };
 export default Home;
-
-// disabled={!!(invalidEmail || invalidPW || email.length === 0 || password.length === 0)}
