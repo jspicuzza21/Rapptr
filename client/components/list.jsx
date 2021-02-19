@@ -68,8 +68,9 @@ const List = (props) => {
               <button type="button" onClick={handleNew} style={{ backgroundColor: 'black' }}>Save</button>
             </div>
             )}
-          {/* Map through the object from the toDoList and display items */}
-          {Object.entries(toDoList).map((elem) => {
+          {/* Map through the object from the toDoList and display items if there are items in the list */}
+          {toDoList !== null
+          && Object.entries(toDoList).map((elem) => {
             idx += 1;
             // If the showEdit state value is equal to the current element display the item as an input field with save button
             if (elem[0] === showEdit) {
